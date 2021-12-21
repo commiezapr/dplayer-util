@@ -1,0 +1,14 @@
+{
+  "name": "dplayer-util",
+  "version": "1.0.0",
+  "description": "A tool to help generate files needed to add music to DCS JF-17's dplayer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "The Thing",
+  "license": "ISC",
+  "dependencies": {
+    "fluent-ffmpeg": "^2.1.2"
+  }
+}
