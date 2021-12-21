@@ -5,7 +5,7 @@ dataPath = "./data/";
 output = "./output/";
 
 effectsDir = output + "Mods/aircraft/JF-17/Sounds/Effects/Cockpit/DPlayer/";
-sdefDir = output + "Mods/aircraft/JF-17/Sounds/sdef/";
+sdefDir = output + "Mods/aircraft/JF-17/Sounds/sdef/Cockpit/DPlayer/";
 
 sdefFormat = '--\nwave = \"/Effects/Cockpit/DPlayer/%s\"\ninner_radius = 10\nouter_radius = 100'
 
@@ -38,10 +38,8 @@ fs.readdirSync(dataPath).forEach(file => {
 
     ffmpeg(dataPath+file).toFormat('wav').on('error', (err) => {
         console.error(err);
-    }).on('progress', (progress) => {
-        console.log('Processing: ' + progress.targetSize + ' KB converted');
     }).on('end', () => {
-        console.log('Processing finished !');
+        console.log(`Converted ${file}`);
     }).save(`${effectsDir}${currentFileName}.wav`);
 
     count++;
