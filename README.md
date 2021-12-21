@@ -4,7 +4,7 @@ This is a python script that takes in a directory path with mp3 music files and 
 
 Note that JF-17's dplayer can only add up to 30 music files.
 
-# Pre-requisite 
+# Pre-requisites
 
 NodeJs - https://nodejs.org/en/
 
