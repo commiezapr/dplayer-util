@@ -1,7 +1,8 @@
 const fs = require('fs');
 const ffmpeg = require('fluent-ffmpeg');
+const path = require('path');
 
-dataPath = "./data/";
+dataPath = "./music/";
 output = "./output/";
 
 effectsDir = output + "Mods/aircraft/JF-17/Sounds/Effects/Cockpit/DPlayer/";
@@ -27,20 +28,24 @@ function writeSdef(fileName) {
        if(err) {
            console.error(err);
            return;
-       } 
+       }
     });
 }
 
 fs.readdirSync(dataPath).forEach(file => {
-    currentFileName = 'music_' + (count < 10?('0' + count):count);
+    if(path.extname(file) == '.mp3') {
+        currentFileName = 'music_' + (count < 10?('0' + count):count);
 
-    writeSdef(currentFileName);
+        writeSdef(currentFileName);
 
-    ffmpeg(dataPath+file).toFormat('wav').on('error', (err) => {
-        console.error(err);
-    }).on('end', () => {
-        console.log(`Converted ${file}`);
-    }).save(`${effectsDir}${currentFileName}.wav`);
-
-    count++;
+        ffmpeg(dataPath+file).toFormat('wav').on('error', (err) => {
+            console.error(err);
+        }).on('end', () => {
+            console.log(`Converted ${file}`);
+        }).save(`${effectsDir}${currentFileName}.wav`);
+        
+        count++;
+    }
 });
+
+console.log(`Files written to ${output}`);
